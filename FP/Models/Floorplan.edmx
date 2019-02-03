@@ -1,0 +1,580 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LMFloorplanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Contracts">
+          <Key>
+            <PropertyRef Name="ContractId" />
+          </Key>
+          <Property Name="ContractId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="OriginatingSystemIdType" Type="varchar" MaxLength="50" />
+          <Property Name="OriginatingSystemIdValue" Type="varchar" MaxLength="100" />
+          <Property Name="SystemCode" Type="varchar" MaxLength="50" />
+          <Property Name="DateAdded" Type="datetime" />
+          <Property Name="DateModified" Type="datetime" />
+          <Property Name="AddedByUserProfileId" Type="bigint" />
+          <Property Name="ModifiedByUserProfileId" Type="bigint" />
+          <Property Name="DomainValueId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="DomainValues">
+          <Key>
+            <PropertyRef Name="DomainValueId" />
+          </Key>
+          <Property Name="DomainValueId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DomainName" Type="varchar" MaxLength="250" />
+          <Property Name="DomainCode" Type="varchar" MaxLength="50" />
+          <Property Name="NameValue" Type="varchar" MaxLength="250" />
+          <Property Name="DisplayValue" Type="varchar" MaxLength="250" />
+          <Property Name="Description" Type="varchar" MaxLength="250" />
+          <Property Name="ChildDomainName" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="FloorplanLocations">
+          <Key>
+            <PropertyRef Name="FloorplanLocationId" />
+          </Key>
+          <Property Name="FloorplanLocationId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="MinX" Type="varchar" MaxLength="50" />
+          <Property Name="MaxX" Type="varchar" MaxLength="50" />
+          <Property Name="MinY" Type="varchar" MaxLength="50" />
+          <Property Name="MaxY" Type="varchar" MaxLength="50" />
+          <Property Name="DateAdded" Type="datetime" />
+          <Property Name="DateModified" Type="datetime" />
+          <Property Name="AddedByUserProfileId" Type="bigint" />
+          <Property Name="ModifiedByUserProfileId" Type="bigint" />
+          <Property Name="LocationId" Type="bigint" />
+          <Property Name="FloorplanId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Floorplans">
+          <Key>
+            <PropertyRef Name="FloorplanId" />
+          </Key>
+          <Property Name="FloorplanId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="ImageURL" Type="varchar(max)" />
+          <Property Name="DateAdded" Type="datetime" />
+          <Property Name="DateModified" Type="datetime" />
+          <Property Name="AddedByUserProfileId" Type="bigint" />
+          <Property Name="ModifiedByUserProfileId" Type="bigint" />
+          <Property Name="ContractId" Type="bigint" />
+          <Property Name="OriginatingSystemIdValue" Type="varchar" MaxLength="100" />
+          <Property Name="PropertyTypeCode" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Locations">
+          <Key>
+            <PropertyRef Name="LocationId" />
+          </Key>
+          <Property Name="LocationId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="OriginatingSystemIdType" Type="varchar" MaxLength="50" />
+          <Property Name="OriginatingSystemIdValue" Type="varchar" MaxLength="100" />
+          <Property Name="DateAdded" Type="datetime" />
+          <Property Name="DateModified" Type="datetime" />
+          <Property Name="AddedByUserProfileId" Type="bigint" />
+          <Property Name="ModifiedByUserProfileId" Type="bigint" />
+          <Property Name="ContractId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Properties">
+          <Key>
+            <PropertyRef Name="PropertyId" />
+          </Key>
+          <Property Name="PropertyId" Type="int" Nullable="false" />
+          <Property Name="ContractId" Type="int" Nullable="false" />
+          <Property Name="PropertyNumber" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="AssetNumber" Type="varchar" MaxLength="30" />
+          <Property Name="Address" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="PropertyArea" Type="varchar" MaxLength="100" />
+          <Property Name="PropertyTypeId" Type="int" Nullable="false" />
+          <Property Name="Suburb" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Floorplan" Type="int" />
+        </EntityType>
+        <EntityType Name="PropertyTypes">
+          <Key>
+            <PropertyRef Name="PropertyTypeId" />
+          </Key>
+          <Property Name="PropertyTypeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PropertyTypeCode" Type="varchar" MaxLength="50" />
+          <Property Name="PropertyTypeName" Type="varchar" MaxLength="100" />
+          <Property Name="ContractId" Type="bigint" />
+        </EntityType>
+        <Association Name="FK_Contracts_DomainValues">
+          <End Role="DomainValues" Type="Self.DomainValues" Multiplicity="0..1" />
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DomainValues">
+              <PropertyRef Name="DomainValueId" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="DomainValueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FloorplanLocations_Floorplan">
+          <End Role="Floorplans" Type="Self.Floorplans" Multiplicity="0..1" />
+          <End Role="FloorplanLocations" Type="Self.FloorplanLocations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Floorplans">
+              <PropertyRef Name="FloorplanId" />
+            </Principal>
+            <Dependent Role="FloorplanLocations">
+              <PropertyRef Name="FloorplanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FloorplanLocations_Locations">
+          <End Role="Locations" Type="Self.Locations" Multiplicity="0..1" />
+          <End Role="FloorplanLocations" Type="Self.FloorplanLocations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locations">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="FloorplanLocations">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Floorplans_Contracts">
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="0..1" />
+          <End Role="Floorplans" Type="Self.Floorplans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contracts">
+              <PropertyRef Name="ContractId" />
+            </Principal>
+            <Dependent Role="Floorplans">
+              <PropertyRef Name="ContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Locations_Contracts">
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="0..1" />
+          <End Role="Locations" Type="Self.Locations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contracts">
+              <PropertyRef Name="ContractId" />
+            </Principal>
+            <Dependent Role="Locations">
+              <PropertyRef Name="ContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyTypes_Contracts">
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="0..1" />
+          <End Role="PropertyTypes" Type="Self.PropertyTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contracts">
+              <PropertyRef Name="ContractId" />
+            </Principal>
+            <Dependent Role="PropertyTypes">
+              <PropertyRef Name="ContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LMFloorplanModelStoreContainer">
+          <EntitySet Name="Contracts" EntityType="Self.Contracts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DomainValues" EntityType="Self.DomainValues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FloorplanLocations" EntityType="Self.FloorplanLocations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Floorplans" EntityType="Self.Floorplans" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Properties" EntityType="Self.Properties" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyTypes" EntityType="Self.PropertyTypes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Contracts_DomainValues" Association="Self.FK_Contracts_DomainValues">
+            <End Role="DomainValues" EntitySet="DomainValues" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FloorplanLocations_Floorplan" Association="Self.FK_FloorplanLocations_Floorplan">
+            <End Role="Floorplans" EntitySet="Floorplans" />
+            <End Role="FloorplanLocations" EntitySet="FloorplanLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FloorplanLocations_Locations" Association="Self.FK_FloorplanLocations_Locations">
+            <End Role="Locations" EntitySet="Locations" />
+            <End Role="FloorplanLocations" EntitySet="FloorplanLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Floorplans_Contracts" Association="Self.FK_Floorplans_Contracts">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="Floorplans" EntitySet="Floorplans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Locations_Contracts" Association="Self.FK_Locations_Contracts">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="Locations" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyTypes_Contracts" Association="Self.FK_PropertyTypes_Contracts">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="PropertyTypes" EntitySet="PropertyTypes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LMFloorplanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="ContractId" />
+          </Key>
+          <Property Name="ContractId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OriginatingSystemIdType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OriginatingSystemIdValue" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SystemCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateAdded" Type="DateTime" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+          <Property Name="AddedByUserProfileId" Type="Int64" />
+          <Property Name="ModifiedByUserProfileId" Type="Int64" />
+          <Property Name="DomainValueId" Type="Int64" />
+          <NavigationProperty Name="DomainValue" Relationship="Self.FK_Contracts_DomainValues" FromRole="Contracts" ToRole="DomainValues" />
+          <NavigationProperty Name="Floorplans" Relationship="Self.FK_Floorplans_Contracts" FromRole="Contracts" ToRole="Floorplans" />
+          <NavigationProperty Name="Locations" Relationship="Self.FK_Locations_Contracts" FromRole="Contracts" ToRole="Locations" />
+          <NavigationProperty Name="PropertyTypes" Relationship="Self.FK_PropertyTypes_Contracts" FromRole="Contracts" ToRole="PropertyTypes" />
+        </EntityType>
+        <EntityType Name="DomainValue">
+          <Key>
+            <PropertyRef Name="DomainValueId" />
+          </Key>
+          <Property Name="DomainValueId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DomainName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DomainCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameValue" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DisplayValue" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ChildDomainName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Contracts" Relationship="Self.FK_Contracts_DomainValues" FromRole="DomainValues" ToRole="Contracts" />
+        </EntityType>
+        <EntityType Name="FloorplanLocation">
+          <Key>
+            <PropertyRef Name="FloorplanLocationId" />
+          </Key>
+          <Property Name="FloorplanLocationId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MinX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MaxX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MinY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MaxY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateAdded" Type="DateTime" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+          <Property Name="AddedByUserProfileId" Type="Int64" />
+          <Property Name="ModifiedByUserProfileId" Type="Int64" />
+          <Property Name="LocationId" Type="Int64" />
+          <Property Name="FloorplanId" Type="Int64" />
+          <NavigationProperty Name="Floorplan" Relationship="Self.FK_FloorplanLocations_Floorplan" FromRole="FloorplanLocations" ToRole="Floorplans" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_FloorplanLocations_Locations" FromRole="FloorplanLocations" ToRole="Locations" />
+        </EntityType>
+        <EntityType Name="Floorplan">
+          <Key>
+            <PropertyRef Name="FloorplanId" />
+          </Key>
+          <Property Name="FloorplanId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ImageURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateAdded" Type="DateTime" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+          <Property Name="AddedByUserProfileId" Type="Int64" />
+          <Property Name="ModifiedByUserProfileId" Type="Int64" />
+          <Property Name="ContractId" Type="Int64" />
+          <Property Name="OriginatingSystemIdValue" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PropertyTypeCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Contract" Relationship="Self.FK_Floorplans_Contracts" FromRole="Floorplans" ToRole="Contracts" />
+          <NavigationProperty Name="FloorplanLocations" Relationship="Self.FK_FloorplanLocations_Floorplan" FromRole="Floorplans" ToRole="FloorplanLocations" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="LocationId" />
+          </Key>
+          <Property Name="LocationId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OriginatingSystemIdType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OriginatingSystemIdValue" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DateAdded" Type="DateTime" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+          <Property Name="AddedByUserProfileId" Type="Int64" />
+          <Property Name="ModifiedByUserProfileId" Type="Int64" />
+          <Property Name="ContractId" Type="Int64" />
+          <NavigationProperty Name="Contract" Relationship="Self.FK_Locations_Contracts" FromRole="Locations" ToRole="Contracts" />
+          <NavigationProperty Name="FloorplanLocations" Relationship="Self.FK_FloorplanLocations_Locations" FromRole="Locations" ToRole="FloorplanLocations" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="PropertyId" />
+          </Key>
+          <Property Name="PropertyId" Type="Int32" Nullable="false" />
+          <Property Name="ContractId" Type="Int32" Nullable="false" />
+          <Property Name="PropertyNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AssetNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PropertyArea" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PropertyTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Suburb" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Floorplan" Type="Int32" />
+        </EntityType>
+        <EntityType Name="PropertyType">
+          <Key>
+            <PropertyRef Name="PropertyTypeId" />
+          </Key>
+          <Property Name="PropertyTypeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PropertyTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PropertyTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ContractId" Type="Int64" />
+          <NavigationProperty Name="Contract" Relationship="Self.FK_PropertyTypes_Contracts" FromRole="PropertyTypes" ToRole="Contracts" />
+        </EntityType>
+        <Association Name="FK_Contracts_DomainValues">
+          <End Role="DomainValues" Type="Self.DomainValue" Multiplicity="0..1" />
+          <End Role="Contracts" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DomainValues">
+              <PropertyRef Name="DomainValueId" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="DomainValueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Floorplans_Contracts">
+          <End Role="Contracts" Type="Self.Contract" Multiplicity="0..1" />
+          <End Role="Floorplans" Type="Self.Floorplan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contracts">
+              <PropertyRef Name="ContractId" />
+            </Principal>
+            <Dependent Role="Floorplans">
+              <PropertyRef Name="ContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Locations_Contracts">
+          <End Role="Contracts" Type="Self.Contract" Multiplicity="0..1" />
+          <End Role="Locations" Type="Self.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contracts">
+              <PropertyRef Name="ContractId" />
+            </Principal>
+            <Dependent Role="Locations">
+              <PropertyRef Name="ContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyTypes_Contracts">
+          <End Role="Contracts" Type="Self.Contract" Multiplicity="0..1" />
+          <End Role="PropertyTypes" Type="Self.PropertyType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contracts">
+              <PropertyRef Name="ContractId" />
+            </Principal>
+            <Dependent Role="PropertyTypes">
+              <PropertyRef Name="ContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FloorplanLocations_Floorplan">
+          <End Role="Floorplans" Type="Self.Floorplan" Multiplicity="0..1" />
+          <End Role="FloorplanLocations" Type="Self.FloorplanLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Floorplans">
+              <PropertyRef Name="FloorplanId" />
+            </Principal>
+            <Dependent Role="FloorplanLocations">
+              <PropertyRef Name="FloorplanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FloorplanLocations_Locations">
+          <End Role="Locations" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="FloorplanLocations" Type="Self.FloorplanLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locations">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="FloorplanLocations">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LMFloorplanEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Contracts" EntityType="Self.Contract" />
+          <EntitySet Name="DomainValues" EntityType="Self.DomainValue" />
+          <EntitySet Name="FloorplanLocations" EntityType="Self.FloorplanLocation" />
+          <EntitySet Name="Floorplans" EntityType="Self.Floorplan" />
+          <EntitySet Name="Locations" EntityType="Self.Location" />
+          <EntitySet Name="Properties" EntityType="Self.Property" />
+          <EntitySet Name="PropertyTypes" EntityType="Self.PropertyType" />
+          <AssociationSet Name="FK_Contracts_DomainValues" Association="Self.FK_Contracts_DomainValues">
+            <End Role="DomainValues" EntitySet="DomainValues" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Floorplans_Contracts" Association="Self.FK_Floorplans_Contracts">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="Floorplans" EntitySet="Floorplans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Locations_Contracts" Association="Self.FK_Locations_Contracts">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="Locations" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyTypes_Contracts" Association="Self.FK_PropertyTypes_Contracts">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="PropertyTypes" EntitySet="PropertyTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FloorplanLocations_Floorplan" Association="Self.FK_FloorplanLocations_Floorplan">
+            <End Role="Floorplans" EntitySet="Floorplans" />
+            <End Role="FloorplanLocations" EntitySet="FloorplanLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FloorplanLocations_Locations" Association="Self.FK_FloorplanLocations_Locations">
+            <End Role="Locations" EntitySet="Locations" />
+            <End Role="FloorplanLocations" EntitySet="FloorplanLocations" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LMFloorplanModelStoreContainer" CdmEntityContainer="LMFloorplanEntities">
+          <EntitySetMapping Name="Contracts">
+            <EntityTypeMapping TypeName="LMFloorplanModel.Contract">
+              <MappingFragment StoreEntitySet="Contracts">
+                <ScalarProperty Name="ContractId" ColumnName="ContractId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="OriginatingSystemIdType" ColumnName="OriginatingSystemIdType" />
+                <ScalarProperty Name="OriginatingSystemIdValue" ColumnName="OriginatingSystemIdValue" />
+                <ScalarProperty Name="SystemCode" ColumnName="SystemCode" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="AddedByUserProfileId" ColumnName="AddedByUserProfileId" />
+                <ScalarProperty Name="ModifiedByUserProfileId" ColumnName="ModifiedByUserProfileId" />
+                <ScalarProperty Name="DomainValueId" ColumnName="DomainValueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DomainValues">
+            <EntityTypeMapping TypeName="LMFloorplanModel.DomainValue">
+              <MappingFragment StoreEntitySet="DomainValues">
+                <ScalarProperty Name="DomainValueId" ColumnName="DomainValueId" />
+                <ScalarProperty Name="DomainName" ColumnName="DomainName" />
+                <ScalarProperty Name="DomainCode" ColumnName="DomainCode" />
+                <ScalarProperty Name="NameValue" ColumnName="NameValue" />
+                <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ChildDomainName" ColumnName="ChildDomainName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FloorplanLocations">
+            <EntityTypeMapping TypeName="LMFloorplanModel.FloorplanLocation">
+              <MappingFragment StoreEntitySet="FloorplanLocations">
+                <ScalarProperty Name="FloorplanLocationId" ColumnName="FloorplanLocationId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="MinX" ColumnName="MinX" />
+                <ScalarProperty Name="MaxX" ColumnName="MaxX" />
+                <ScalarProperty Name="MinY" ColumnName="MinY" />
+                <ScalarProperty Name="MaxY" ColumnName="MaxY" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="AddedByUserProfileId" ColumnName="AddedByUserProfileId" />
+                <ScalarProperty Name="ModifiedByUserProfileId" ColumnName="ModifiedByUserProfileId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="FloorplanId" ColumnName="FloorplanId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Floorplans">
+            <EntityTypeMapping TypeName="LMFloorplanModel.Floorplan">
+              <MappingFragment StoreEntitySet="Floorplans">
+                <ScalarProperty Name="FloorplanId" ColumnName="FloorplanId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="AddedByUserProfileId" ColumnName="AddedByUserProfileId" />
+                <ScalarProperty Name="ModifiedByUserProfileId" ColumnName="ModifiedByUserProfileId" />
+                <ScalarProperty Name="ContractId" ColumnName="ContractId" />
+                <ScalarProperty Name="OriginatingSystemIdValue" ColumnName="OriginatingSystemIdValue" />
+                <ScalarProperty Name="PropertyTypeCode" ColumnName="PropertyTypeCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="LMFloorplanModel.Location">
+              <MappingFragment StoreEntitySet="Locations">
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="OriginatingSystemIdType" ColumnName="OriginatingSystemIdType" />
+                <ScalarProperty Name="OriginatingSystemIdValue" ColumnName="OriginatingSystemIdValue" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="AddedByUserProfileId" ColumnName="AddedByUserProfileId" />
+                <ScalarProperty Name="ModifiedByUserProfileId" ColumnName="ModifiedByUserProfileId" />
+                <ScalarProperty Name="ContractId" ColumnName="ContractId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Properties">
+            <EntityTypeMapping TypeName="LMFloorplanModel.Property">
+              <MappingFragment StoreEntitySet="Properties">
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+                <ScalarProperty Name="ContractId" ColumnName="ContractId" />
+                <ScalarProperty Name="PropertyNumber" ColumnName="PropertyNumber" />
+                <ScalarProperty Name="AssetNumber" ColumnName="AssetNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PropertyArea" ColumnName="PropertyArea" />
+                <ScalarProperty Name="PropertyTypeId" ColumnName="PropertyTypeId" />
+                <ScalarProperty Name="Suburb" ColumnName="Suburb" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Floorplan" ColumnName="Floorplan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyTypes">
+            <EntityTypeMapping TypeName="LMFloorplanModel.PropertyType">
+              <MappingFragment StoreEntitySet="PropertyTypes">
+                <ScalarProperty Name="PropertyTypeId" ColumnName="PropertyTypeId" />
+                <ScalarProperty Name="PropertyTypeCode" ColumnName="PropertyTypeCode" />
+                <ScalarProperty Name="PropertyTypeName" ColumnName="PropertyTypeName" />
+                <ScalarProperty Name="ContractId" ColumnName="ContractId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

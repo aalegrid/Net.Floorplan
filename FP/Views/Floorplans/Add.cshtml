@@ -1,0 +1,132 @@
+﻿@model FP.Models.FloorplanDto
+
+@{
+    ViewBag.Title = "New Floorplan";
+}
+
+@section head {}
+
+
+
+
+<div class="row floorplan-edit">
+    <div class="col-sm-9 left-panel">
+        <div class="canvas-container">
+            <div class="temp-image">
+            <i class="far fa-image"></i>
+                <h5>Please upload a floorplan image</h5>
+            </div>
+            
+        </div>
+    </div>
+    <div class="col-sm-3 right-panel">
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data", onsubmit = "preSubmit(event)", @class = "edit-form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <div class="floorplan-details">
+                <h5>
+                    Floorplan Details
+                    
+                </h5>
+                <div id="f-details" class="section-container">
+                    <div class="form-group">
+                        <label>Name</label>
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control form-control-sm" })
+                        <div>@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Code</label>
+                        @Html.TextBoxFor(model => model.Code, new { @class = "form-control form-control-sm" })
+                        <div>@Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        @Html.TextBoxFor(model => model.Description, new { @class = "form-control form-control-sm" })
+                        <div>@Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Contract</label>
+                        @Html.DropDownList("ContractId", (IEnumerable<SelectListItem>)ViewBag.ContractId, new { @class = "form-control form-control-sm" })
+                        <div> @Html.ValidationMessageFor(model => model.ContractId, "", new { @class = "text-danger" })</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Property Type</label>
+                        @Html.DropDownList("PropertyTypeCode", (IEnumerable<SelectListItem>)ViewBag.PropertyTypeCode, new { @class = "form-control form-control-sm" })
+                        <div>@Html.ValidationMessageFor(model => model.PropertyTypeCode, "", new { @class = "text-danger" })</div>
+                    </div>
+                    <div class="form-group file-upload">
+                        <div class="label">Floorplan Image</div>
+                        <input type="file" name="ImageURL" id="ImageURL" class="inputfile" data-multiple-caption="{count} files selected" multiple />
+                        <label for="ImageURL"><span><i class="fas fa-upload"></i> Choose a file</span></label>
+                    </div>
+
+
+
+
+
+                    <div class="form-group">
+                        <div class="buttons">
+
+                            <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-check"></i> Save</button>
+                            <a class="btn btn-primary btn-sm" href="/Floorplans/Index"><i class="fas fa-ban"></i> Cancel</a>
+                         </div>
+                    </div>
+
+
+                    <div id="alert-floorplan-item" class="@(String.IsNullOrEmpty(ViewBag.ShowOrHide) ? "hidden" : Html.Raw(ViewBag.ShowOrHide))">
+                        <div class="alert @(String.IsNullOrEmpty(ViewBag.AlertType) ? "alert-info" : Html.Raw(ViewBag.AlertType)) alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            @ViewBag.Message
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        }
+    </div>
+
+    </div>
+
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+
+
+         $(document).ready(function () {
+             floorplans.init();
+             var inputs = document.querySelectorAll('.inputfile');
+             Array.prototype.forEach.call(inputs, function (input) {
+                 var label = input.nextElementSibling,
+                     labelVal = label.innerHTML;
+
+                 input.addEventListener('change', function (e) {
+                     var fileName = '';
+                     if (this.files && this.files.length > 1)
+                         fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
+                     else
+                         fileName = e.target.value.split('\\').pop();
+
+                     if (fileName)
+                         label.querySelector('span').innerHTML = fileName;
+                     else
+                         label.innerHTML = labelVal;
+                 });
+             });
+        });
+
+
+
+
+        
+      
+    </script>
+}
+

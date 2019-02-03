@@ -1,0 +1,77 @@
+﻿@using FP.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+
+
+<div class="row login">
+    <div class="col-sm-6">
+        <section id="loginForm">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <h3>Welcome to SpyderApp</h3>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+
+                <label class="sr-only" for="inlineFormInputGroup">Email</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email", type = "email" })
+
+
+                </div>
+                <div>@Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })</div>
+
+
+                <label class="sr-only" for="inlineFormInputGroup">Password</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fas fa-unlock"></i>
+                        </div>
+                    </div>
+
+                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control", placeholder = "Password", type = "password" })
+
+
+                </div>
+                <div> @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })</div>
+
+
+
+                <div class="checkbox mb-3">
+                    @Html.CheckBoxFor(m => m.RememberMe)
+                    @Html.LabelFor(m => m.RememberMe)
+                </div>
+
+
+                <button type="submit" class="btn btn-primary btn-lg btn-block">  <i class="fas fa-check"></i> Log in</button>
+
+                @*<input type="submit" value="Log in" class="btn btn-primary btn-lg btn-block" />*@
+
+
+
+
+            }
+        </section>
+    </div>
+    <div class="col-sm-4 warning-info">
+        <section>
+            <h2>&nbsp;</h2>
+            <p>The information recorded in this system is owned by Lake Maintenance Pty Ltd & is used for managing assets on behalf of clients. The information is confidential and should not be used for any purpose other than completing the tasks assigned to user. If you are not an authorised user please leave this site.</p>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

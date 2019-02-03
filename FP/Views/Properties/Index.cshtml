@@ -1,0 +1,84 @@
+﻿@{
+    LMFloorplanEntities entities = new LMFloorplanEntities();
+}
+
+@using FP.Models
+
+
+@{
+    ViewBag.Title = "Properties";
+}
+
+@section head {}
+
+@model IEnumerable<FP.Models.Property>
+
+<div class="table-container hidden">
+    <div class="table-container-inner">
+        <table id="pageTable" class="display responsive" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Address</th>
+                    <th>Suburb</th>
+                    <th>State</th>
+                    <th>Property Area</th>
+                    <th>Contract</th>
+                    <th class="no-click">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.Address
+                        </td>
+                        <td>
+                            @item.Suburb
+                        </td>
+                        <td>
+                            @item.State
+                        </td>
+                        <td>
+                            @item.PropertyArea
+                        </td>
+                        <td>
+                            @entities.Contracts.FirstOrDefault(x => x.ContractId == item.ContractId).Name
+                        </td>
+                        <td>
+                            <a id="view-btn-@item.PropertyId" class="btn btn-primary btn-sm view-fp-button" href="/Properties/View/@item.PropertyId"><i class="fas fa-eye"></i> View</a>&nbsp;<a id="manage-btn-@item.PropertyId" data-fancybox data-type="iframe" data-src="/Properties/Mapping/?id=@item.PropertyId" href="javascript:;" class="btn btn-primary btn-sm"><i class="fas fa-cog"></i> Edit</a>
+                        </td>
+                    </tr>
+                }
+
+
+
+
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+@section scripts {
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('#pageTable').DataTable();
+            $("#pageTable_filter").load("/content/html/dt-search.html");
+            $(document.body).on('keyup', '#dt-search', function () {
+                table.search(this.value).draw();
+            });
+
+            $(".table-container").removeClass("hidden");
+        });
+
+        var fbCloseRefresh = function () {
+
+            $.fancybox.close();
+
+        };
+    </script>
+}

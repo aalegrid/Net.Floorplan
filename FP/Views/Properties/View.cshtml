@@ -1,0 +1,227 @@
+﻿@using FP.Models
+@model Floorplan
+
+@{
+    //ViewBag.Title = @ViewBag.Address + " " + @ViewBag.Suburb + " " + @ViewBag.State;
+    ViewBag.Title = "Work History";
+}
+
+@section head {
+    @Styles.Render("~/Content/qtip")
+}
+
+@* ------ Content -------- *@
+
+
+<script type="text/template" id="workHistoryTemplate">
+    <div id="<%= Type %>-<%= OrderItemId %>">
+        <h4 class="<%= Time %>"><i class="fa fa-file-text" aria-hidden="true"></i> <%= ItemCode %></h4>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <td>WO#:</td>
+                <td>
+                    <%= WorkOrderNumber %>
+                </td>
+            </tr>
+            <tr>
+                <td>WO Priority:</td>
+                <td>
+                    <%= WorkOrderPriority %>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <%= QuantityLabel %>
+                </td>
+                <td>
+                    <%= QuantityOrdered %>
+                </td>
+            </tr>
+            <tr>
+                <td>Located Code:</td>
+                <td>
+                    <%= LocationCode %>
+                </td>
+            </tr>
+            <tr>
+                <td>Date:</td>
+                <td>
+                    <%= DateFormatted %>
+                </td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td>
+                    <%= ClientShortDescription %>
+                </td>
+            </tr>
+            <tr>
+                <td>Comments:</td>
+                <td>
+                    <%= Comments %>
+                </td>
+            </tr>
+        </table>
+    </div>
+</script>
+<input type='hidden' name="contractId" id="contractId" value="@Model.ContractId" />
+<input type='hidden' name="propertyId" id="propertyId" value="@ViewBag.PropertyId" />
+<div class="view-floorplan">
+    <div class="row header">
+        <div class="col-sm-7">
+            <div class="icon float-left icon">
+                <i class="fas fa-home"></i>
+            </div>
+            <div class="float-left address">
+                Address:
+                <br />
+                <strong>@ViewBag.Address, @ViewBag.Suburb, @ViewBag.State</strong>
+            </div>
+        </div>
+        <div class="col-sm-5 period-links">
+            <div class="row">
+                <div class="col-lg">
+                    <a class="completed" data-group="Completed" href="#"><span></span> Completed work</a>
+                </div>
+                <div class="col-lg">
+                    <a class="in-progress" data-group="InProgress" href="#"><span></span> Work in progress</a>
+                </div>
+                <div class="w-100"></div>
+                <div class="col-lg">
+                    <a class="scoped" data-group="Scoped" href="#"><span></span> Scoped work</a>
+                </div>
+                <div class="col-lg">
+                    <a class="defected" data-group="Defected" href="#"><span></span> Defected work</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row content">
+        <div class="col-sm-7 left-panel">
+            <div class="fp-image-view">
+                <img src="@Html.Raw(Model.ImageURL)" alt="" id="floorplan" usemap="#image-map" class="img-fluid map" />
+                <map name="image-map" id="image-map">
+                    @foreach (var item in Model.FloorplanLocations)
+                    {
+                        decimal minx = System.Convert.ToDecimal(item.MinX);
+                        decimal maxx = System.Convert.ToDecimal(item.MaxX);
+                        decimal miny = System.Convert.ToDecimal(item.MinY);
+                        decimal maxy = System.Convert.ToDecimal(item.MaxY);
+                        <area alt="alt" shape="rect" coords="@minx,@miny,@maxx,@maxy" id="loc-@item.Location.OriginatingSystemIdValue" href="#loc-@item.Location.OriginatingSystemIdValue-panel">}
+                </map>
+            </div>
+            <div class="location-summary-info">
+                <a tabindex="0" id="lm-summary-info" class="btn btn-default btn-lg" role="button" data-html="true" data-placement="top" data-toggle="popover" data-trigger="focus" title="<strong><i class='fas fa-hammer'></i> Work Summary</strong>" data-content=""><i class="fas fa-info-circle" aria-hidden="true"></i> Work Summary</a>
+            </div>
+        </div>
+        <div class="col-sm-5 right-panel">
+            <div class="tab-content">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* ------ Content -------- *@
+
+@section scripts {
+
+    @Scripts.Render("~/bundles/underscore")
+    @Scripts.Render("~/bundles/moment")
+    @Scripts.Render("~/bundles/cookie")
+    @Scripts.Render("~/bundles/maphilight")
+    @Scripts.Render("~/bundles/imageMapResizer")
+    @Scripts.Render("~/bundles/qtip")
+
+    <script type="text/javascript">
+
+       
+        floorplanHistory.init();
+
+        window.locationArray = [];
+
+        $(document).ready(function () {
+
+            $('.map').maphilight();
+            $('map').imageMapResize();
+
+            @foreach (var item in Model.FloorplanLocations)
+            {
+
+                decimal minx = System.Convert.ToDecimal(item.MinX);
+                decimal maxx = System.Convert.ToDecimal(item.MaxX);
+                decimal miny = System.Convert.ToDecimal(item.MinY);
+                decimal maxy = System.Convert.ToDecimal(item.MaxY);
+
+                <text>
+
+            window.locationArray.push({
+                id: "@item.Location.OriginatingSystemIdValue",
+                    name: "@item.Description",
+                    coordinates: {
+                        minx: "@minx",
+                    maxx: "@maxx",
+                    miny: "@miny",
+                    maxy: "@maxy"
+                },
+                    types: []
+                });
+
+            $("#loc-@item.Location.OriginatingSystemIdValue").qtip({
+                content: {
+                    @*<area alt="alt" shape="rect" coords="@minx,@miny,@maxx,@maxy" id="loc-@item.Location.OriginatingSystemIdValue" href="#loc-@item.Location.OriginatingSystemIdValue-panel">}*@
+ 
+                    text: "<a class='lm-qtip-popover' href='javascript:;' onclick='javascript:floorplanHistory.showLocationPane(this);' data-link='#loc-@item.Location.OriginatingSystemIdValue-panel'>@item.Description</a>"
+                },
+                position: {
+                    my: 'top left',
+                    at: 'top left',
+                    target: $("#loc-@item.Location.OriginatingSystemIdValue"),
+                    adjust: {
+                        x: 10,
+                        y: 10
+                    }
+                },
+                style: {
+                    classes: 'qtip-light qtip-shadow'
+                },
+                show: {
+                    effect: function () {
+                        $(this).fadeIn(250);
+                    }
+                },
+                hide: {
+                    delay: 200,
+                    fixed: true, // <--- add this
+                    effect: function () {
+                        $(this).fadeOut(250);
+                    }
+                }
+            });
+
+                </text>
+
+            }
+
+            floorplanHistory.getPropertyWorkHistory();
+
+            $("#lm-summary-info").popover();
+
+            var floorplanImage = document.getElementById('floorplan')
+            var floorplanOriginalImage = new Image();
+
+            floorplanOriginalImage.onload = function () {
+                window.floorplanOriginalImage = {
+                    width: floorplanOriginalImage.width,
+                    height: floorplanOriginalImage.height
+                };
+            }
+
+            floorplanOriginalImage.src = floorplanImage.src 
+
+        });
+
+    </script>
+
+}
+

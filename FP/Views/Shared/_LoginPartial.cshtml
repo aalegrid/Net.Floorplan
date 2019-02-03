@@ -1,0 +1,23 @@
+﻿@{
+    var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+    var currentUser = manager.FindById(User.Identity.GetUserId());
+}
+
+@using FP.Models;
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.EntityFramework;
+@if (Request.IsAuthenticated)
+{
+<span><i class="fas fa-user"></i> Hello @currentUser.FirstName @currentUser.LastName</span>              
+}
+
+
+
+
+
+
+
+
+
+
+

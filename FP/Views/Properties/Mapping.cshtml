@@ -1,0 +1,62 @@
+﻿@model FP.Models.Property
+
+@{
+    ViewBag.Title = "Manage Property Floorplan";
+    Layout = "~/Views/Shared/_Popup.cshtml";
+}
+
+<div>
+
+    <input type='hidden' name="PropertyId" id="PropertyId" value="@Model.PropertyId" />
+
+    <h4>Property</h4>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th scope="row">Address</th>
+                <td>@Model.Address<br />@Model.Suburb<br />@Model.State</td>
+            </tr>
+            <tr>
+                <th scope="row">Property Area</th>
+                <td>@Model.PropertyArea</td>
+            </tr>
+            <tr>
+                <th scope="row">Floorplan</th>
+                <td>
+                    <select class="form-control" id="property-floorplan">
+                        @foreach (var item in ViewBag.Floorplans)
+                        {
+                            <option value="@item.FloorplanId">@item.Name</option>
+                        }
+                    </select>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+
+        <a class="btn btn-primary" href="javascript:parent.fbCloseRefresh();"><i class="fas fa-ban"></i> Cancel</a>
+        <a id="save-floorplan-mapping" class="btn btn-primary" href="javascript:;"><i class="fas fa-check"></i> Save</a>
+
+    </div>
+
+    @Html.Partial("_Alert")
+
+
+
+</div>
+
+@section scripts {
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#property-floorplan").val("@Model.Floorplan");
+        });
+
+       
+    </script>
+}
+

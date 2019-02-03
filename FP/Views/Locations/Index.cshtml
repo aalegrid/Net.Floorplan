@@ -1,0 +1,74 @@
+﻿@using FP.Models
+
+@{
+    ViewBag.Title = "Locations";
+}
+
+@section head {}
+@{
+    LMFloorplanEntities entities = new LMFloorplanEntities();
+}
+@model IEnumerable<FP.Models.Location>
+
+<div class="table-container hidden">
+    <div class="table-container-inner">
+        <table id="pageTable" class="display responsive" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Contract</th>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th><a data-fancybox data-type="iframe" data-src="/Locations/Edit" href="javascript:;" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> New</a></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @entities.Contracts.FirstOrDefault(x => x.ContractId == item.ContractId).Name
+                    </td>
+                    <td>
+                        @item.Code
+                    </td>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.Description
+                    </td>
+                    <td>
+                        <a id="edit-btn-@item.LocationId" data-fancybox data-type="iframe" data-src="/Locations/Edit/@item.LocationId" href="javascript:;" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</a>
+                    </td>
+                </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+
+@section scripts {
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('#pageTable').DataTable();
+            $("#pageTable_filter").load("/content/html/dt-search.html");
+            $(document.body).on('keyup', '#dt-search', function () {
+                table.search(this.value).draw();
+            });
+
+            $(".table-container").removeClass("hidden");
+        });
+
+        var fbCloseRefresh = function () {
+            $.fancybox.close();
+            location.reload();
+        };
+
+    </script>
+}
