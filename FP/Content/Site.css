@@ -10,10 +10,10 @@ body {
   display: none;
 }
 .fancybox-slide--iframe .fancybox-content {
-  width: 1000px;
-  height: 800px;
-  max-width: 80%;
-  max-height: 80%;
+  /*width: 1000px;
+    height: 800px;*/
+  max-width: 70%;
+  max-height: 70%;
   margin: 0;
 }
 #page-message-alert {
@@ -21,6 +21,12 @@ body {
 }
 .popup {
   padding: 20px;
+}
+.popup .edit-buttons {
+  padding-bottom: 15px;
+}
+.popup .edit-buttons .btn {
+  margin-bottom: 10px;
 }
 .page {
   /*background: #fff url(/svg/bg-trans.svg) right top no-repeat;
@@ -45,11 +51,13 @@ header #navbarHeader {
   padding-top: 10px;
 }
 header #navbarHeader .container {
-  margin-bottom: 8px;
+  margin-bottom: 0;
   text-align: right;
 }
 header #navbarHeader .container ul {
   padding-left: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 header #navbarHeader .container ul li {
   display: inline-block;
@@ -427,6 +435,9 @@ footer p {
   header #navbarHeader .container {
     text-align: left;
   }
+  header #navbarHeader .container ul {
+    border-bottom: 1px dotted #ccc;
+  }
   header #navbarHeader .container ul li {
     display: block;
     border-right: 0;
@@ -451,10 +462,16 @@ footer p {
     padding-left: auto;
     padding-bottom: 10px;
   }
+  .fancybox-slide--iframe .fancybox-content {
+    max-width: 95%;
+  }
 }
 @media (min-width: 576px) {
   header #navbarHeader .container {
     text-align: left;
+  }
+  header #navbarHeader .container ul {
+    border-bottom: 1px dotted #ccc;
   }
   header #navbarHeader .container ul li {
     display: block;
@@ -480,10 +497,16 @@ footer p {
     padding-left: 0;
     padding-bottom: 10px;
   }
+  .fancybox-slide--iframe .fancybox-content {
+    max-width: 70%;
+  }
 }
 @media (min-width: 768px) {
   header #navbarHeader .container {
     text-align: right;
+  }
+  header #navbarHeader .container ul {
+    border-bottom: 0;
   }
   header #navbarHeader .container ul li {
     display: inline-block;
