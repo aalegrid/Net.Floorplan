@@ -63,34 +63,35 @@ header {
         padding-top: 10px;
 
         .container {
-            /*border-bottom: 1px dotted #ccc;*/
             margin-bottom: 8px;
+            text-align: right;
 
-            .collapse-menu {
-                ul {
-                    li {
-                        span {
-                            text-align: center;
-                            display: inline-block;
-                            width: 32px;
-                            background-color: #ebebeb;
-                            padding: 4px 8px;
-                            margin-bottom: 2px;
-                            border: 1px solid #ccc;
-                        }
 
-                        a {
-                            display: inline-block;
-                            border: 1px solid #ccc;
-                            padding: 4px 8px;
-                            width: 90%;
-                            margin-right: 2px;
-                        }
+            ul {
+                padding-left: 0;
+
+                li {
+                    display: inline-block;
+                    padding: 8px 10px 8px 5px;
+
+                    border-right: 1px dotted #ccc;
+
+                    span {
+                        text-align: center;
+                        display: inline-block;
+                        width: 22px;
                     }
+                }
+
+                li:last-of-type {
+                    padding-right: 0;
+                    border: 0;
                 }
             }
         }
     }
+
+
 
     .svg-logo svg, .svg-logo img {
         height: 110px;
@@ -106,7 +107,7 @@ header {
     .navbar-toggler {
         border-color: #666;
         margin-top: 10px;
-        border-radius: 0;
+        border-radius: 3px;
         padding: 3px 8px;
     }
 }
@@ -332,10 +333,12 @@ main {
                 .icon {
                     font-size: 40px;
                     margin-right: 10px;
+                    margin-top: -10px;
                 }
 
                 .address {
-                    margin-top: 10px;
+
+                    margin-left: 15px;
                 }
 
 
@@ -598,29 +601,47 @@ footer {
 
 @media (max-width: 575px) {
     header {
-        #navbarHeader {
-            .collapse-menu {
-                ul {
-                    li {
-                        span {
-                        }
 
-                        a {
-                            width: 100%;
+        #navbarHeader {
+            .container {
+                text-align: left;
+
+                ul {
+
+
+                    li {
+                        display: block;
+                        border-right: 0;
+                        border-bottom: 1px dotted #ccc;
+
+                        span {
+                            width: 28px;
                         }
                     }
                 }
-            }
-
-            .header-message {
-                text-align: left !important;
             }
         }
 
         .site-title {
             padding-left: 72px !important;
-            /*font-size: 15px;*/
-            /*line-height: 17px !important;*/
+        }
+
+
+    }
+    main {
+        .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter {
+            text-align: left;
+        }
+
+        .main-body .view-floorplan .content .right-panel {
+            margin-left: 15px;
+            margin-right: 15px;
+        }
+
+        .period-links {
+            margin-left: auto;
+            padding-left: auto;
+            padding-bottom: 10px;
         }
     }
 }
@@ -629,10 +650,46 @@ footer {
 @media (min-width: 576px) {
     header {
 
+        #navbarHeader {
+            .container {
+                text-align: left;
+
+                ul {
+
+
+                    li {
+                        display: block;
+                        border-right: 0;
+                        border-bottom: 1px dotted #ccc;
+
+                        span {
+                            width: 28px;
+                        }
+                    }
+                }
+            }
+        }
+
         .site-title {
             padding-left: 55px !important;
-            /*font-size: 15px !important;*/
-            /*line-height: 38px !important;*/
+        }
+
+    }
+
+    main {
+        .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter {
+            text-align: left;
+        }
+
+        .main-body .view-floorplan .content .right-panel {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .period-links {
+            margin-left: -1px;
+            padding-left: 0;
+            padding-bottom: 10px;
         }
     }
 }
@@ -640,11 +697,42 @@ footer {
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
     header {
+        #navbarHeader {
+            .container {
+                text-align: right;
+
+                ul {
+                    li {
+                        display: inline-block;
+                        border-right: 1px dotted #ccc;
+                        border-bottom: 0;
+
+                        span {
+                            width: 22px;
+                        }
+                    }
+                }
+            }
+        }
 
         .site-title {
             padding-left: 42px !important;
-            /*font-size: 22px !important;*/
-            /*line-height: normal !important;*/
+        }
+
+        .period-links {
+            margin-left: auto;
+            padding-left: auto;
+            padding-bottom: auto;
+        }
+    }
+    main {
+        .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter {
+            text-align: center;
+        }
+
+        .table-container .table-container-inner .btn {
+            margin-bottom: 5px;
+            width: 70px;
         }
     }
 }
@@ -657,6 +745,12 @@ footer {
             padding-left: 25px !important;
             /*font-size: 22px !important;*/
             /*line-height: normal !important;*/
+        }
+    }
+    main {
+        .table-container .table-container-inner .btn {
+            margin-bottom: auto;
+            width: auto;
         }
     }
 }

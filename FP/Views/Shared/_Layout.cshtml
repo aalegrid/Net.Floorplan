@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-6jHF7Z3XI3fF4XZixAuSu0gGKrXwoX/w3uFPxC56OtjChio7wtTGJWRW53Nhx6Ev" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/af-2.3.2/b-1.5.4/b-colvis-1.5.4/b-flash-1.5.4/b-html5-1.5.4/b-print-1.5.4/cr-1.5.0/fc-3.2.5/fh-3.1.4/kt-2.5.0/r-2.2.2/rg-1.1.0/rr-1.2.4/sc-1.5.0/sl-1.2.6/datatables.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.2/jquery.fancybox.min.css" />
     @*<link rel="stylesheet" type="text/css" href="" />*@
@@ -29,28 +29,22 @@
             {
                 <div class="collapse" id="navbarHeader">
                     <div class="container">
-                        <div class="row justify-content-between no-gutters">
-                            <div class="col-sm-4 collapse-menu">
-                                <h4>Tasks</h4>
-                                <ul class="list-unstyled">
-                                    <li><span><i class="fas fa-home"></i></span><a href="/Properties">Properties</a></li>
-                                    <li><span><i class="fas fa-file-contract"></i></span><a href="/Contracts">Contracts</a></li>
-                                    <li><span><i class="fas fa-vector-square"></i></span><a href="/Locations">Locations</a></li>
-                                    <li><span><i class="fas fa-map"></i></span><a href="/Floorplans">Floorplans</a></li>
 
-                                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                                    {
-                                        @Html.AntiForgeryToken()
-                                        <li><span><i class="fas fa-sign-out-alt"></i></span><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-                                    }
-                                </ul>
-                            </div>
+                        <ul>
+                            <li><span><i class="fas fa-home"></i></span><a href="/Properties">Properties</a></li>
+                            <li><span><i class="fas fa-file-contract"></i></span><a href="/Contracts">Contracts</a></li>
+                            <li><span><i class="fas fa-vector-square"></i></span><a href="/Locations">Locations</a></li>
+                            <li><span><i class="fas fa-map"></i></span><a href="/Floorplans">Floorplans</a></li>
+                            <li>
+                                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <span><i class="fas fa-sign-out-alt"></i></span><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
 
-                            <div class="col-sm-8 text-right header-message">
-                                <h4>About</h4>
-                                <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
-                            </div>
-                        </div>
+                                }
+                            </li>
+                        </ul>
+
                     </div>
                 </div>
             }
@@ -71,7 +65,7 @@
         {
                         <div class="col-1 text-right">
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="true" aria-label="Toggle navigation">
-                                <i class="fas fa-bars"></i>
+                                <i class="far fa-bars"></i>
                             </button>
                         </div>
                     }

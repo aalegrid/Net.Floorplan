@@ -69,14 +69,22 @@
 <div class="view-floorplan">
     <div class="row header">
         <div class="col-sm-7">
-            <div class="icon float-left icon">
-                <i class="fas fa-home"></i>
+            <div class="row">
+                <div class="col-1 icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="col address">
+                    Address:
+                    <br />
+                    <strong>@ViewBag.Address, @ViewBag.Suburb, @ViewBag.State</strong>
+                </div>
             </div>
-            <div class="float-left address">
-                Address:
-                <br />
-                <strong>@ViewBag.Address, @ViewBag.Suburb, @ViewBag.State</strong>
+            @*<div class="icon float-left icon">
+               
             </div>
+            <div class="float-left ">
+               
+            </div>*@
         </div>
         <div class="col-sm-5 period-links">
             <div class="row">

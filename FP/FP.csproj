@@ -295,6 +295,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="HtmlPage1.html" />
     <Content Include="Images\feathered-corner.png" />
     <Content Include="Images\fp-holder.png" />
     <Content Include="Images\transparent.png" />

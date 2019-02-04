@@ -949,3 +949,14 @@ var floorplanHistory = {
 
 
 };
+
+//$(".navbar-toggler").click(function () {
+//    //alert($("#navbarHeader").hasClass("show"));
+
+//    if (!$("#navbarHeader").hasClass("show")) {
+//        $(this).html('<i class="fas fa-caret-up"></i>');
+//    }
+//    else {
+//        $(this).html('<i class="fas fa-caret-down"></i>');
+//    }
+//});
