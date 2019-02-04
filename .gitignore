@@ -16,5 +16,5 @@ _Publish/
 .vs
 /bin/*
 /obj/*
-/FP/bin
-/FP/obj/Debug
+/FP/bin/*
+/FP/obj/*
