@@ -31,15 +31,17 @@
                     <div class="container">
 
                         <ul>
-                            <li><span><i class="fas fa-home"></i></span><a href="/Properties">Properties</a></li>
-                            <li><span><i class="fas fa-file-contract"></i></span><a href="/Contracts">Contracts</a></li>
-                            <li><span><i class="fas fa-vector-square"></i></span><a href="/Locations">Locations</a></li>
-                            <li><span><i class="fas fa-map"></i></span><a href="/Floorplans">Floorplans</a></li>
+                            <li><a href="/Properties"><span><i class="far fa-home-lg"></i></span>Properties</a></li>
+                            <li><a href="/Contracts"><span><i class="fas fa-file-contract"></i></span>Contracts</a></li>
+                            <li><a href="/Locations"><span><i class="fas fa-vector-square"></i></span>Locations</a></li>
+                            <li><a href="/Floorplans"><span><i class="fas fa-map"></i></span>Floorplans</a></li>
                             <li>
                                 @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                                 {
                                     @Html.AntiForgeryToken()
-                                    <span><i class="fas fa-sign-out-alt"></i></span><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                                    <a href="javascript:document.getElementById('logoutForm').submit()">
+                                        <span><i class="fas fa-sign-out-alt"></i></span>Log off
+                                    </a>
 
                                 }
                             </li>
@@ -62,7 +64,7 @@
                         @ViewBag.Title
                     </div>
                     @if (Request.IsAuthenticated)
-        {
+                    {
                         <div class="col-1 text-right">
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="true" aria-label="Toggle navigation">
                                 <i class="far fa-bars"></i>
@@ -105,6 +107,7 @@
 
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+    <script src="/scripts/bootstrap-toolkit.min.js"></script>
 
     @*<script type="text/javascript" src=""></script>*@
 

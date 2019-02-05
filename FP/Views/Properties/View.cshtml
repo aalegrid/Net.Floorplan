@@ -107,7 +107,7 @@
     <div class="row content">
         <div class="col-sm-7 left-panel">
             <div class="fp-image-view">
-                <img src="@Html.Raw(Model.ImageURL)" alt="" id="floorplan" usemap="#image-map" class="img-fluid map" />
+                <img src="@Html.Raw(Model.ImageURL)" alt="" id="floorplan" usemap="#image-map" class="img-fluid map" style="width: 100% \9;"/>
                 <map name="image-map" id="image-map">
                     @foreach (var item in Model.FloorplanLocations)
                     {
@@ -147,6 +147,10 @@
         floorplanHistory.init();
 
         window.locationArray = [];
+
+        var fixImage = function () {
+
+        };
 
         $(document).ready(function () {
 
@@ -225,7 +229,9 @@
                 };
             }
 
-            floorplanOriginalImage.src = floorplanImage.src 
+            floorplanOriginalImage.src = floorplanImage.src;
+
+
 
         });
 

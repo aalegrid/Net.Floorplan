@@ -61,17 +61,23 @@ header #navbarHeader .container ul {
 }
 header #navbarHeader .container ul li {
   display: inline-block;
-  padding: 8px 10px 8px 5px;
-  border-right: 1px dotted #ccc;
+  border-bottom: 0;
+  background-color: #ebebeb;
+  padding: 0 5px 0 0;
+  /*border-top-right-radius: 3px;
+                    border-bottom-right-radius: 3px;*/
 }
-header #navbarHeader .container ul li span {
+header #navbarHeader .container ul li a {
+  text-decoration: none;
+  color: #000;
+}
+header #navbarHeader .container ul li a span {
   text-align: center;
   display: inline-block;
-  width: 22px;
-}
-header #navbarHeader .container ul li:last-of-type {
-  padding-right: 0;
-  border: 0;
+  padding: 5px;
+  border-right: 1px dotted #fff;
+  background-color: #ccc;
+  margin-right: 5px;
 }
 header .svg-logo svg,
 header .svg-logo img {
@@ -281,9 +287,9 @@ main .main-body .view-floorplan .header .period-links a.defected span {
 }
 main .main-body .view-floorplan .content .left-panel .fp-image-view {
   border: 1px dotted black;
-  height: 500px;
-  max-height: 500px;
-  overflow-y: auto;
+  /*height: @view-fp-panel-height;
+                        max-height: @view-fp-panel-height;
+                        overflow-y: auto;*/
   background-color: #fff;
 }
 main .main-body .view-floorplan .content .left-panel .fp-image-view .map {
@@ -291,7 +297,7 @@ main .main-body .view-floorplan .content .left-panel .fp-image-view .map {
 }
 main .main-body .view-floorplan .content .left-panel .location-summary-info {
   position: relative;
-  bottom: 50px;
+  bottom: 42px;
 }
 main .main-body .view-floorplan .content .left-panel .location-summary-info a {
   font-size: 15px;
@@ -301,9 +307,9 @@ main .main-body .view-floorplan .content .left-panel .location-summary-info a:fo
   outline: 0;
 }
 main .main-body .view-floorplan .content .right-panel {
-  height: 500px;
-  max-height: 500px;
-  overflow-y: auto;
+  /*height: @view-fp-panel-height;
+                    max-height: @view-fp-panel-height;*/
+  overflow: auto;
   background-color: #fff;
   padding: 10px;
   box-shadow: inset 1px 1px 48px 0px #d6cbd6;
@@ -443,8 +449,8 @@ footer p {
     border-right: 0;
     border-bottom: 1px dotted #ccc;
   }
-  header #navbarHeader .container ul li span {
-    width: 28px;
+  header #navbarHeader .container ul li a span {
+    width: 30px;
   }
   header .site-title {
     padding-left: 72px !important;
@@ -462,6 +468,9 @@ footer p {
     padding-left: auto;
     padding-bottom: 10px;
   }
+  main .view-floorplan .content .left-panel {
+    margin-bottom: -20px;
+  }
   .fancybox-slide--iframe .fancybox-content {
     max-width: 95%;
   }
@@ -478,8 +487,8 @@ footer p {
     border-right: 0;
     border-bottom: 1px dotted #ccc;
   }
-  header #navbarHeader .container ul li span {
-    width: 28px;
+  header #navbarHeader .container ul li a span {
+    width: 30px;
   }
   header .site-title {
     padding-left: 55px !important;
@@ -510,11 +519,7 @@ footer p {
   }
   header #navbarHeader .container ul li {
     display: inline-block;
-    border-right: 1px dotted #ccc;
     border-bottom: 0;
-  }
-  header #navbarHeader .container ul li span {
-    width: 22px;
   }
   header .site-title {
     padding-left: 42px !important;

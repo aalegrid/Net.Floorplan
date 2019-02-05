@@ -12,6 +12,9 @@
 
 <div class="table-container hidden">
     <div class="table-container-inner">
+
+        <div class="table-responsive">
+
         <table id="pageTable" class="display responsive" style="width:100%">
             <thead>
                 <tr>
@@ -26,27 +29,28 @@
 
                 @foreach (var item in Model)
                 {
-                <tr>
-                    <td>
-                        @entities.Contracts.FirstOrDefault(x => x.ContractId == item.ContractId).Name
-                    </td>
-                    <td>
-                        @item.Code
-                    </td>
-                    <td>
-                        @item.Name
-                    </td>
-                    <td>
-                        @item.Description
-                    </td>
-                    <td>
-                        <a id="edit-btn-@item.LocationId" data-fancybox data-type="iframe" data-src="/Locations/Edit/@item.LocationId" href="javascript:;" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>
+                            @entities.Contracts.FirstOrDefault(x => x.ContractId == item.ContractId).Name
+                        </td>
+                        <td>
+                            @item.Code
+                        </td>
+                        <td>
+                            @item.Name
+                        </td>
+                        <td>
+                            @item.Description
+                        </td>
+                        <td>
+                            <a id="edit-btn-@item.LocationId" data-fancybox data-type="iframe" data-src="/Locations/Edit/@item.LocationId" href="javascript:;" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</a>
+                        </td>
+                    </tr>
                 }
 
             </tbody>
         </table>
+            </div>
     </div>
 
 

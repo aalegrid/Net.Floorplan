@@ -4,6 +4,8 @@
 
 *.DS_Store
 /node_modules/*
+/bin/*
+/obj/*
 
 
 # Windows image file caches
@@ -18,3 +20,4 @@ _Publish/
 /obj/*
 /FP/bin/*
 /FP/obj/*
+/FP/node_modules/*
