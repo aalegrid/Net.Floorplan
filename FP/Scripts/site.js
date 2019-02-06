@@ -969,6 +969,10 @@ var floorplanHistory = {
                 html += "</table>";
 
                 $(".location-summary-info a").attr("data-content", html);
+
+               
+                $(".tab-content").find(".pane-nav:empty").prev().hide();
+                $(".tab-content").find(".pane-nav:empty").hide();
             }
 
         };
