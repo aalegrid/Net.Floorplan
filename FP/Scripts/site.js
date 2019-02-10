@@ -659,7 +659,6 @@ var floorplanHistory = {
 
         });
 
-        // Wrap IIFE around your code
         (function ($, viewport) {
             $(document).ready(function () {
 
@@ -684,15 +683,10 @@ var floorplanHistory = {
                 }
 
                 // Execute code each time window size changes
-                $(window).resize(
-                    viewport.changed(function () {
-                        //if (viewport.is('xs')) {
-                           
-                        //}
-                        var height = $('#floorplan').height() + 35;
-                        $('.fp-image-view, .right-panel').css("height", height + "px");
-                    })
-                );
+                $(window).resize(function () {
+                    var height = $('#floorplan').height() + 35;
+                    $('.fp-image-view, .right-panel').css("height", height + "px");
+                });
 
                 var height = $('#floorplan').height() + 35;
                 $('.fp-image-view, .right-panel').css("height", height + "px");
@@ -936,7 +930,7 @@ var floorplanHistory = {
                 });
 
                 var maxCount = Math.max.apply(Math, typeCounts);
-                var html = "<table class='table-summary-info table table-striped'>";
+                var html = "<table class='table-summary-info table'>";
 
 
 

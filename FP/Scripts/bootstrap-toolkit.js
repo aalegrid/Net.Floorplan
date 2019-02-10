@@ -15,11 +15,12 @@ var ResponsiveBootstrapToolkit = (function($){
          */
         detectionDivs: {
             // Bootstrap 3
-            bootstrap: {
-                'xs': $('<div class="device-xs visible-xs visible-xs-block"></div>'),
-                'sm': $('<div class="device-sm visible-sm visible-sm-block"></div>'),
-                'md': $('<div class="device-md visible-md visible-md-block"></div>'),
-                'lg': $('<div class="device-lg visible-lg visible-lg-block"></div>')
+            bootstrap: { 
+                'xs': $('<div class="device-xs d-block d-sm-none">xs</div>'), 
+                'sm': $('<div class="device-sm d-none d-sm-block d-md-none">sm</div>'),
+                'md': $('<div class="device-md d-none d-md-block d-lg-none">md</div>'),     
+                'lg': $('<div class="device-lg d-none d-lg-block d-xl-none">lg</div>'), 
+                'xl': $('<div class="device-lg d-none d-xl-block">xl</div>') 
             },
             // Foundation 5
             foundation: {
