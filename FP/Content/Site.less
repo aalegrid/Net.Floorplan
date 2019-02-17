@@ -1,15 +1,21 @@
 ﻿@view-fp-panel-height: 500px;
-
-
-
-html,
-body,
-.page {
+@heading-font: futura-pt, Helvetica, Arial, sans-serif;
+    
+html, body, .page {
     height: 100%;
 }
 
 body {
-    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    font-family: proxima-nova, Helvetica, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: @heading-font;
 }
 
 .hidden {
@@ -72,6 +78,8 @@ body {
 header {
     #navbarHeader {
         padding-top: 10px;
+        font-family: @heading-font;
+        font-weight: 500;
 
         .container {
             margin-bottom: 0;
@@ -90,7 +98,6 @@ header {
                     padding: 0 5px 0 0;
                     /*border-top-right-radius: 3px;
                     border-bottom-right-radius: 3px;*/
-
                     a {
                         text-decoration: none;
                         color: #000;
@@ -100,7 +107,7 @@ header {
                             display: inline-block;
                             padding: 5px;
                             border-right: 1px dotted #fff;
-                            background-color: #ccc;
+                            background-color: #e1e1e1;
                             margin-right: 5px;
                         }
                     }
@@ -117,9 +124,10 @@ header {
     }
 
     .site-title {
-        font-size: 20px;
+        font-family: @heading-font;
+        font-size: 26px;
         padding-top: 6px;
-        font-weight: bold;
+        font-weight: 500;
     }
 
     .navbar-toggler {
@@ -127,6 +135,7 @@ header {
         margin-top: 10px;
         border-radius: 3px;
         padding: 3px 8px;
+        border: 0;
     }
 }
 
@@ -150,6 +159,10 @@ main {
 
         .login {
             padding-top: 40px;
+
+            hr {
+                border-top: 1px dotted #000;
+            }
 
             .warning-info {
                 p {
@@ -254,12 +267,12 @@ main {
             .right-panel {
                 h5 {
                     font-size: 16px;
-                    font-weight: bold;
+                    font-weight: 500;
                     white-space: nowrap;
                     border-top: 1px dotted #555;
                     border-bottom: 1px dotted #555;
-                    padding-left: 4px;
-                    padding-right: 4px;
+                    padding-left: 8px;
+                    padding-right: 8px;
                     background-image: url(/Images/transparent.png);
 
                     .btn-sm {
@@ -434,6 +447,7 @@ main {
                         position: relative;
                         bottom: 38px;
                         left: 5px;
+
                         a {
                             font-size: 13px;
                             font-weight: 700;
@@ -625,7 +639,7 @@ footer {
                 text-align: left;
 
                 ul {
-                    border-bottom: 1px dotted #ccc;
+                    border-bottom: 0;
 
                     li {
                         display: block;
@@ -684,7 +698,7 @@ footer {
                 text-align: left;
 
                 ul {
-                    border-bottom: 1px dotted #ccc;
+                    border-bottom: 0;
 
                     li {
                         display: block;
@@ -737,13 +751,12 @@ footer {
                 text-align: right;
 
                 ul {
-                    border-bottom: 0;
+                    border-bottom: 1px dotted #ccc;
+                    padding-bottom: 10px;
 
                     li {
                         display: inline-block;
                         border-bottom: 0;
-
-                        
                     }
                 }
             }

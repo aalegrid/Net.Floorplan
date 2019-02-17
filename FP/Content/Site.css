@@ -4,7 +4,15 @@ body,
   height: 100%;
 }
 body {
-  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  font-family: proxima-nova, Helvetica, Arial, sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: futura-pt, Helvetica, Arial, sans-serif;
 }
 .hidden {
   display: none;
@@ -53,6 +61,8 @@ body {
 }
 header #navbarHeader {
   padding-top: 10px;
+  font-family: futura-pt, Helvetica, Arial, sans-serif;
+  font-weight: 500;
 }
 header #navbarHeader .container {
   margin-bottom: 0;
@@ -80,7 +90,7 @@ header #navbarHeader .container ul li a span {
   display: inline-block;
   padding: 5px;
   border-right: 1px dotted #fff;
-  background-color: #ccc;
+  background-color: #e1e1e1;
   margin-right: 5px;
 }
 header .svg-logo svg,
@@ -89,15 +99,17 @@ header .svg-logo img {
   width: 110px;
 }
 header .site-title {
-  font-size: 20px;
+  font-family: futura-pt, Helvetica, Arial, sans-serif;
+  font-size: 26px;
   padding-top: 6px;
-  font-weight: bold;
+  font-weight: 500;
 }
 header .navbar-toggler {
   border-color: #666;
   margin-top: 10px;
   border-radius: 3px;
   padding: 3px 8px;
+  border: 0;
 }
 main {
   margin-top: -60px;
@@ -116,6 +128,9 @@ main .main-body {
 }
 main .main-body .login {
   padding-top: 40px;
+}
+main .main-body .login hr {
+  border-top: 1px dotted #000;
 }
 main .main-body .login .warning-info p {
   margin-top: 28px;
@@ -182,12 +197,12 @@ main .main-body .floorplan-edit .left-panel .canvas-container .temp-image h5 {
 }
 main .main-body .floorplan-edit .right-panel h5 {
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 500;
   white-space: nowrap;
   border-top: 1px dotted #555;
   border-bottom: 1px dotted #555;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
   background-image: url(/Images/transparent.png);
 }
 main .main-body .floorplan-edit .right-panel h5 .btn-sm {
@@ -448,7 +463,7 @@ footer p {
     text-align: left;
   }
   header #navbarHeader .container ul {
-    border-bottom: 1px dotted #ccc;
+    border-bottom: 0;
   }
   header #navbarHeader .container ul li {
     display: block;
@@ -486,7 +501,7 @@ footer p {
     text-align: left;
   }
   header #navbarHeader .container ul {
-    border-bottom: 1px dotted #ccc;
+    border-bottom: 0;
   }
   header #navbarHeader .container ul li {
     display: block;
@@ -521,7 +536,8 @@ footer p {
     text-align: right;
   }
   header #navbarHeader .container ul {
-    border-bottom: 0;
+    border-bottom: 1px dotted #ccc;
+    padding-bottom: 10px;
   }
   header #navbarHeader .container ul li {
     display: inline-block;
