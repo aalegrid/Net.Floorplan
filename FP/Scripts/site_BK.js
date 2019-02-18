@@ -650,18 +650,22 @@ var floorplanHistory = {
 
         $('.fp-image-view  .image-map-area').on('click', function (event) {
             event.preventDefault();
+            // <area alt="alt" shape="rect" coords="280,23,418,127" id="loc-40" href="#loc-40-panel" data-hasqtip="0" aria-describedby="qtip-0">
+
+            //<div class="tab-content"><div role="tabpanel" class="tab-pane active" id="loc-40-panel"></div></div>
             $(".tab-content").find(".tab-pane").removeClass("active");
             $(".tab-content").find($(this).attr("href")).addClass("active");
 
 
         });
 
-        //$(".fp-image-view  .image-map-area").bind("click touchstart", function (e) {
-        //    event.preventDefault();
-        //    $(".tab-content").find(".tab-pane").removeClass("active");
-        //    $(".tab-content").find($(this).attr("href")).addClass("active");
+        $(".fp-image-view  .image-map-area").bind("click touchstart", function (e) {
+            event.preventDefault();
 
-        //});
+            $(".tab-content").find(".tab-pane").removeClass("active");
+            $(".tab-content").find($(this).attr("href")).addClass("active");
+
+        });
 
 
         (function ($, viewport) {

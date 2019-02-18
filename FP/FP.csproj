@@ -380,6 +380,7 @@
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\site.js" />
+    <Content Include="Scripts\site_BK.js" />
     <Content Include="Scripts\test.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
