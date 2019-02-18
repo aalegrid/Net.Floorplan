@@ -297,6 +297,8 @@
     </Content>
     <Content Include="Images\feathered-corner.png" />
     <Content Include="Images\fp-holder.png" />
+    <Content Include="Images\radio_sprite.png" />
+    <Content Include="Images\radio_sprite.svg" />
     <Content Include="Images\transparent.png" />
     <Content Include="Models\Floorplan.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

@@ -133,7 +133,25 @@ main .main-body .login hr {
 }
 main .main-body .login .warning-info p {
   margin-top: 28px;
-  font-size: 13px;
+  font-size: 15px;
+}
+main .main-body .login .cb {
+  font-size: 16px;
+}
+main .main-body .login .cb input[type="checkbox"] {
+  opacity: 0;
+  position: static;
+  cursor: pointer;
+}
+main .main-body .login .cb input[type="checkbox"] + span {
+  margin-left: -17px;
+  padding-left: 26px;
+  cursor: pointer;
+  background: url('/images/radio_sprite.svg') no-repeat;
+  background-position: 0 0;
+}
+main .main-body .login .cb input[type="checkbox"]:checked + span {
+  background-position: 0 -67px;
 }
 main .main-body .table-container {
   /*border-radius: 5px;*/
@@ -171,6 +189,7 @@ main .main-body .dataTables_wrapper .dataTables_paginate .paginate_button.curren
 }
 main .main-body .dataTables_wrapper #pageTable thead tr th {
   padding: 10px 10px;
+  white-space: nowrap;
 }
 main .main-body .dataTables_wrapper #pageTable thead tr th:last-child {
   background: none;

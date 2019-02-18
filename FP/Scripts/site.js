@@ -664,39 +664,18 @@ var floorplanHistory = {
         //});
 
 
-        (function ($, viewport) {
-            $(document).ready(function () {
+        $(document).ready(function () {
 
-                
 
-                // Executes only in XS breakpoint
-                if (viewport.is('xs')) {
-                    // ...
-                    
-                   // $('.fp-image-view, .right-panel').css("height", height + "px");
-                }
-
-                // Executes in SM, MD and LG breakpoints
-                if (viewport.is('>=sm')) {
-                    // ...
-                }
-
-                // Executes in XS and SM breakpoints
-                if (viewport.is('<md')) {
-                    // ...
-                    
-                }
-
-                // Execute code each time window size changes
-                $(window).resize(function () {
-                    var height = $('#floorplan').height() + 35;
-                    $('.fp-image-view, .right-panel').css("height", height + "px");
-                });
-
+            // Execute code each time window size changes
+            $(window).resize(function () {
                 var height = $('#floorplan').height() + 35;
                 $('.fp-image-view, .right-panel').css("height", height + "px");
             });
-        })(jQuery, ResponsiveBootstrapToolkit);
+
+            var height = $('#floorplan').height() + 35;
+            $('.fp-image-view, .right-panel').css("height", height + "px");
+        });
 
     },
 
@@ -991,13 +970,3 @@ var floorplanHistory = {
 
 };
 
-//$(".navbar-toggler").click(function () {
-//    //alert($("#navbarHeader").hasClass("show"));
-
-//    if (!$("#navbarHeader").hasClass("show")) {
-//        $(this).html('<i class="fas fa-caret-up"></i>');
-//    }
-//    else {
-//        $(this).html('<i class="fas fa-caret-down"></i>');
-//    }
-//});

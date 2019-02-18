@@ -22,7 +22,7 @@
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("head", required: false)
 </head>
-<body>
+<body class="hidden">
     <div class="page">
 
         <header>
@@ -110,7 +110,15 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.2/jquery.fancybox.min.js"></script>
     <script src="/scripts/bootstrap-toolkit.min.js"></script>
 
-    @*<script type="text/javascript" src=""></script>*@
+    <script>
+
+        $(document).ready(function () {
+            $("body").removeClass("hidden");
+        });
+
+    </script>
+
+
 
     @Scripts.Render("~/bundles/site")
 

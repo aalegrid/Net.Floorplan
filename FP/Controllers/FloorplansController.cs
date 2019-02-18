@@ -287,6 +287,10 @@ namespace FP.Controllers
 
             try
             {
+                foreach (var loc in entities.FloorplanLocations.Where(x => x.FloorplanId == id))
+                {
+                    entities.FloorplanLocations.Remove(loc);
+                }
                 entities.Floorplans.Remove(floorplan);
                 entities.SaveChanges();
             }

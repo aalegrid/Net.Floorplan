@@ -167,7 +167,29 @@ main {
             .warning-info {
                 p {
                     margin-top: 28px;
-                    font-size: 13px;
+                    font-size: 15px;
+                }
+            }
+
+            .cb {
+                font-size: 16px;
+
+                input[type="checkbox"] {
+                    opacity: 0;
+                    position: static;
+                    cursor: pointer;
+                }
+
+                input[type="checkbox"] + span {
+                    margin-left: -17px;
+                    padding-left: 26px;
+                    cursor: pointer;
+                    background: url('/images/radio_sprite.svg') no-repeat;
+                    background-position: 0 0;
+                }
+
+                input[type="checkbox"]:checked + span {
+                    background-position: 0 -67px;
                 }
             }
         }
@@ -225,6 +247,7 @@ main {
                     tr {
                         th {
                             padding: 10px 10px;
+                            white-space: nowrap;
                         }
 
                         th:last-child {
