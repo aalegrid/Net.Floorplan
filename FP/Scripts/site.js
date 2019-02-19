@@ -129,6 +129,8 @@
             });
 
     });
+
+   
 });
 
 var jsonFind = function (c, prop, value) {
@@ -666,15 +668,18 @@ var floorplanHistory = {
 
         $(document).ready(function () {
 
+            var setHistoryWindowHeight = function () {
+                var height = $('#floorplan').height() + 35;
+                $('.fp-image-view, .right-panel').css("height", height + "px");
+            };
 
             // Execute code each time window size changes
             $(window).resize(function () {
-                var height = $('#floorplan').height() + 35;
-                $('.fp-image-view, .right-panel').css("height", height + "px");
+                //setTimeout(function () { setHistoryWindowHeight(); }, 1000);
+                setHistoryWindowHeight(); 
             });
 
-            var height = $('#floorplan').height() + 35;
-            $('.fp-image-view, .right-panel').css("height", height + "px");
+            setTimeout(function () { setHistoryWindowHeight(); }, 500);
         });
 
     },
