@@ -76,8 +76,8 @@ header #navbarHeader .container ul {
 header #navbarHeader .container ul li {
   display: inline-block;
   border-bottom: 0;
-  background-color: #ebebeb;
-  padding: 0 5px 0 0;
+  /*background-color: #ebebeb;*/
+  padding: 0 12px 0 0;
   /*border-top-right-radius: 3px;
                     border-bottom-right-radius: 3px;*/
 }
@@ -89,8 +89,8 @@ header #navbarHeader .container ul li a span {
   text-align: center;
   display: inline-block;
   padding: 5px;
-  border-right: 1px dotted #fff;
-  background-color: #e1e1e1;
+  /*border-right: 1px dotted #fff;
+                            background-color: #e1e1e1;*/
   margin-right: 5px;
 }
 header .svg-logo svg,
@@ -414,12 +414,12 @@ main .main-body .view-floorplan .content .right-panel .tab-content .pane-nav {
   display: block;
   height: 41px;
   border-bottom: 1px solid #ddd;
+  white-space: nowrap;
 }
 main .main-body .view-floorplan .content .right-panel .tab-content .pane-nav li {
-  float: left;
   margin-bottom: -1px;
   position: relative;
-  display: block;
+  display: inline-block;
 }
 main .main-body .view-floorplan .content .right-panel .tab-content .pane-nav li a {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ededed+0,f6f6f6+53,ffffff+100 */
@@ -559,7 +559,11 @@ footer p {
   }
   header #navbarHeader .container ul li {
     display: inline-block;
+    border-right: 1px solid #ccc;
     border-bottom: 0;
+  }
+  header #navbarHeader .container ul li:last-child {
+    border-right: 0;
   }
   header .site-title {
     padding-left: 42px !important;
