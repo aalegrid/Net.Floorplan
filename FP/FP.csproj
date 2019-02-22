@@ -351,6 +351,7 @@
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Json\WorkHistory.json" />
     <None Include="App_Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="App_Properties\PublishProfiles\SpyderApp - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\imageMapResizer.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -394,7 +395,9 @@
     <Content Include="Svg\bg-trans.svg" />
     <Content Include="Svg\bg.svg" />
     <Content Include="Svg\logo.svg" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
