@@ -21,3 +21,4 @@ _Publish/
 /FP/bin/*
 /FP/obj/*
 /FP/node_modules/*
+/FP/web.*
